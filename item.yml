@@ -1,16 +1,22 @@
 items:
-  rare:
+  rare:  # список предметов, которые падают с редкости rare (Редкая)
     - material: IRON_INGOT
       chance: 50
     - material: COAL
       chance: 30
-  epic:
+    - material: DIAMOND
+      chance: 20
+  epic:  # список предметов, которые падают с редкости epic (Эпическая)
     - material: GOLD_INGOT
       chance: 25
     - material: LAPIS_LAZULI
       chance: 20
-  legendary:
-    - material: GOLD_INGOT
-      chance: 20
-    - material: LAPIS_LAZULI
+    - material: EMERALD
       chance: 15
+  legendary:  # список предметов, которые падают с редкости legendary (Легендарная)
+    - material: NETHERITE_INGOT
+      chance: 10
+    - material: DIAMOND_BLOCK
+      chance: 5
+    - material: ENCHANTED_GOLDEN_APPLE
+      chance: 5
