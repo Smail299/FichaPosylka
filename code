@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -77,6 +78,57 @@ public class FichaPosylkaPlugin extends JavaPlugin implements Listener {
             }
         }
         return 64;
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("posylka")) {
+            if (args.length == 0) {
+                sender.sendMessage("Использование: /posylka <spawn|additem|reload>");
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("spawn")) {
+                spawnPosylka();
+                sender.sendMessage("Посылка заспавнена!");
+                return true;
+            } else if (args[0].equalsIgnoreCase("additem")) {
+                if (sender instanceof Player) {
+                    Player player = (Player) sender;
+                    if (args.length < 3) {
+                        player.sendMessage("Использование: /posylka additem <редкость> <шанс>");
+                        return true;
+                    }
+                    String rarity = args[1].toLowerCase();
+                    int chance;
+                    try {
+                        chance = Integer.parseInt(args[2]);
+                    } catch (NumberFormatException e) {
+                        player.sendMessage("Шанс должен быть числом.");
+                        return true;
+                    }
+                    ItemStack item = player.getInventory().getItemInMainHand();
+                    if (item.getType() == Material.AIR) {
+                        player.sendMessage("Вы должны держать предмет в руке.");
+                        return true;
+                    }
+                    addItemToConfig(rarity, item, chance);
+                    player.sendMessage("Предмет добавлен в конфигурацию.");
+                    return true;
+                } else {
+                    sender.sendMessage("Эту команду можно использовать только игрокам.");
+                    return true;
+                }
+            } else if (args[0].equalsIgnoreCase("reload")) {
+                reloadConfig();
+                sender.sendMessage("Конфигурация перезагружена.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void addItemToConfig(String rarity, ItemStack item, int chance) {
+        // Здесь добавить код для добавления предмета в конфигурацию
     }
 
     @EventHandler
