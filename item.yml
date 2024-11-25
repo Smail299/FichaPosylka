@@ -1,0 +1,16 @@
+items:
+  rare:
+    - material: IRON_INGOT
+      chance: 50
+    - material: COAL
+      chance: 30
+  epic:
+    - material: GOLD_INGOT
+      chance: 25
+    - material: LAPIS_LAZULI
+      chance: 20
+  legendary:
+    - material: GOLD_INGOT
+      chance: 20
+    - material: LAPIS_LAZULI
+      chance: 15
